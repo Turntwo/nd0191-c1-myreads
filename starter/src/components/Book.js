@@ -5,7 +5,6 @@ const Book = ({book, moveBook}) => {
 
 const shelfChange = (e) => {
     e.preventDefault()
-    console.log(`${e.target.value} ${book.shelf} ${book.id}`)
     if (book.shelf !== e.target.value)
         moveBook(book, e.target.value);
 };
