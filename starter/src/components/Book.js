@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import ShelfOption from "./ShelfOption";
+import ShelfChanger from "./ShelfChanger";
 
 const Book = ({book, moveBook}) => {
 
@@ -22,15 +22,7 @@ const shelfChange = (e) => {
                         `url(${book.imageLinks.smallThumbnail})`,
                     }}
                   ></div>
-                  <div className="book-shelf-changer">
-                    <select onChange={shelfChange} value={book.shelf}>
-                      <option value="none" disabled>Move to...</option>
-                      <ShelfOption value="currentlyReading" currentShelf={book.shelf} text="Currently Reading" />
-                      <ShelfOption value="wantToRead" currentShelf={book.shelf} text="Want to Read" />
-                      <ShelfOption value="read" currentShelf={book.shelf} text="Read" />
-                      <ShelfOption value="none" currentShelf={book.shelf} text="None" />
-                    </select>
-                  </div>
+                  <ShelfChanger book={book} moveBook={moveBook} />
                 </div>
                 <div className="book-title">{book.title}</div>
                 <div className="book-authors">

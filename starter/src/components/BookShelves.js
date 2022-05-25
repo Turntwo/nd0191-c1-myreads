@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAll, update } from "../BooksAPI.js"
@@ -8,26 +7,20 @@ const BookShelves = () => {
 
 const [books, setBooks] = useState([]);
 
-useEffect(() => {
-  const getBooks = async () => {
-    const books = await getAll();
-    console.log(books);
-    setBooks(books);
-  }
+const getBooks = async () => {
+  const books = await getAll();
+  setBooks(books);
+}
 
+useEffect(() => {
   getBooks();
 },[]);
 
-const handleMoveBook = (book, shelf) => {
-  const updateBook = async (book, shelf) => {
+const handleMoveBook = async (book, shelf) => {
   console.log(`handling move book for book ${book.id} ${book.title} to shelf ${shelf}`);
   await update(book, shelf);  // Returns arrays of book ids on shelves, weird
-  const books = await getAll();
-  setBooks(books);
+  getBooks();
   };
-
-  updateBook(book, shelf);
-}
 
 
     return (
@@ -49,10 +42,6 @@ const handleMoveBook = (book, shelf) => {
             </div>
           )
     );
-}
-
-BookShelves.propTypes = {
-
 }
 
 export default BookShelves;
