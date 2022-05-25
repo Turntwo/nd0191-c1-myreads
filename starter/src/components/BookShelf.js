@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Book from "./Book";
 import lodash from "lodash";
 
-const BookShelf = ({books, shelfName}) => {
+const BookShelf = ({books, shelfName, moveBook}) => {
 
     return (
 
@@ -11,7 +11,7 @@ const BookShelf = ({books, shelfName}) => {
         <div className="bookshelf-books">
           <ol className="books-grid">
             {
-              books.filter(b => b.shelf===shelfName).map(b=> <li><Book book={b} /></li>)
+              books.filter(b => b.shelf===shelfName).map(b=> <li key={b.id}><Book book={b} moveBook={moveBook} /></li>)
             }
           </ol>
         </div>
@@ -21,7 +21,8 @@ const BookShelf = ({books, shelfName}) => {
 
 BookShelf.propTypes = {
   books: PropTypes.array.isRequired,
-  shelfName: PropTypes.string.isRequired
+  shelfName: PropTypes.string.isRequired,
+  moveBook: PropTypes.func.isRequired
 }
 
 export default BookShelf;
