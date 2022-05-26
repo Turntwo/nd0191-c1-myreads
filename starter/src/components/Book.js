@@ -3,12 +3,6 @@ import ShelfChanger from "./ShelfChanger";
 
 const Book = ({book, moveBook}) => {
 
-const shelfChange = (e) => {
-    e.preventDefault()
-    if (book.shelf !== e.target.value)
-        moveBook(book, e.target.value);
-};
-
     return (
 
               <div className="book">
@@ -26,7 +20,7 @@ const shelfChange = (e) => {
                 </div>
                 <div className="book-title">{book.title}</div>
                 <div className="book-authors">
-                    {book.authors.join(", ")}
+                    {book.authors && book.authors.join(", ")}
                 </div>
               </div>
     );
