@@ -7,7 +7,21 @@ const SearchBooks = () => {
   const [books, setBooks] = useState([]);
 
   const searchChanged = async (e) => {
-    const matchingBooks = await search(e.target.value);
+    const searchText = e.target.value;
+    
+    if (!searchText || searchText.trim()==="")
+    {
+      setBooks([]);
+      return;
+    }
+    
+    const matchingBooks = await search(searchText.trim());
+    if (matchingBooks.error)
+    {
+      setBooks([]);
+      return;
+    }
+
     const shelvedBooks = await getAll();
 
     const books = matchingBooks.map(b => {
@@ -18,6 +32,7 @@ const SearchBooks = () => {
     })
 
     setBooks(books);
+  
   };
 
   const handleMoveBook = async (book, shelf) => {

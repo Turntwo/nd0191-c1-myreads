@@ -18,7 +18,7 @@ useEffect(() => {
 
 const handleMoveBook = async (book, shelf) => {
   console.log(`Handling move book for book ${book.id} ${book.title} to shelf ${shelf} from BookShelves`);
-  await update(book, shelf);  // Returns arrays of book ids on shelves, weird
+  await update(book, shelf);  
   getBooks();
   };
 
