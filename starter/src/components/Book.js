@@ -7,6 +7,7 @@ const Book = ({book, moveBook}) => {
 
               <div className="book">
                 <div className="book-top">
+                  { book.imageLinks && book.imageLinks.smallThumbnail &&
                   <div
                     className="book-cover"
                     style={{
@@ -16,6 +17,7 @@ const Book = ({book, moveBook}) => {
                         `url(${book.imageLinks.smallThumbnail})`,
                     }}
                   ></div>
+                  }
                   <ShelfChanger book={book} moveBook={moveBook} />
                 </div>
                 <div className="book-title">{book.title}</div>
